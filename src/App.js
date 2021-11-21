@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" exact 
-          render={(props) => <HomePage {...props}/>}
+        <Route path="/" 
+          element={<HomePage/>}
         />
-        <Route path="/:slug" exact render={(props) => <ProductListPage {...props}/>} />
+        <Route path="/:slug" exact element={<ProductListPage/>} />
       </Routes>
     </div>
   );
