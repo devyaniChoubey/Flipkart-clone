@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 * @author
 * @function 
 **/
-import Logo from '../../images/logo/D.png';
+import Logo from '../../images/logo/lets_shop.jpeg';
 import goldenStar from '../../images/logo/golden-star.png';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
 import {
@@ -39,43 +39,45 @@ const Header = (props) => {
               <p>Get access to your Orders, Wishlist and Recommendations</p>
             </div>
             <div className="rightspace">
+              <div className="loginInputContainer">
 
-             <div style={{margin : "0 auto", width : "100%"}}>
-              <MaterialInput
-                type="text"
-                label="Enter Email/Enter Mobile Number"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+                <MaterialInput
+                  type="text"
+                  label="Enter Email/Enter Mobile Number"
+                  placeholder="Emails"
+                // value={email}
+                // onChange={(e) => setEmail(e.target.value)}
+                />
 
-              <MaterialInput
-                type="password"
-                label="Enter Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              // rightElement={<a href="#">Forgot?</a>}
-              />
-              <MaterialButton
-                title="Login"
-                bgColor="#cd6deb"
-                textColor="#ffffff"
-                // style={{
-                //   margin: '40px 0 20px 0'
-                // }}
-                onClick={userlogin}
-              />
-              <p>OR</p>
+                <MaterialInput
+                  type="password"
+                  label="Enter Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                // rightElement={<a href="#">Forgot?</a>}
+                />
+                <MaterialButton
+                  title="Login"
+                  bgColor="#cd6deb"
+                  textColor="#ffffff"
+                  style={{
+                    margin: "40px 0 20px 0",
+                  }}
+                  onClick={userlogin}
+                />
+                <p style={{ textAlign: "center" }}>OR</p>
 
-              <MaterialButton
-                title="Request OTP"
-                bgColor="#ffffff"
-                textColor="#2874f0"
-                // style={{
-                //   margin: '20px 0'
-                // }}
-              />
+                <MaterialButton
+                  title="Request OTP"
+                  bgColor="#ffffff"
+                  textColor="#2874f0"
+                  className="inputElemment"
+                  style={{
+                    margin: "20px 0",
+                  }}
+                />
+              </div>
 
-</div>
 
             </div>
           </div>
