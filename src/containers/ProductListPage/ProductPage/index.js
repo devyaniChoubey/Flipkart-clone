@@ -16,7 +16,7 @@ const ProductPage = (props) => {
 
     useEffect(() => {
         const params = getParams(location.search);
-        console.log({ params });
+        console.log({ para : params });
         const payload = {
             params
         }
@@ -25,7 +25,7 @@ const ProductPage = (props) => {
 
     return (
 
-
+     
 
         <div style={{ margin: '0 10px' }}>
             <h3>{page.title}</h3>

@@ -25,6 +25,7 @@ const ProductListPage = (props) => {
             default:
                 content = null;
         }
+        console.log({content})
         return content;
     }
     return (

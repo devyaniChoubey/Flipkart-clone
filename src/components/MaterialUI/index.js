@@ -28,17 +28,28 @@ const MaterialInput = (props) => {
 
     return (
         <div className="materialInput">
-        <input className="input" onChange={props.onChange} value={props.value} type={props.type}/>
+            <input className="input" onChange={props.onChange} value={props.value} type={props.type} />
         </div>
     )
 }
 
 const MaterialButton = (props) => {
+    const onClick = () => {
+        props.onClick && props.onClick();
+    }
     return (
-        <div style={{ width: '90%' }}>
+        <div style={{
+            width: '90%',
+            ...props.style
+        }}>
             <button
-                className="materialButton" onClick={props.onClick}
+                className="materialButton" style={{
+                    backgroundColor: props.bgColor,
+                    color: props.textColor,
+                }}
+                onClick={onClick}
             >
+                {props.icon && props.icon}
                 {props.title && props.title}
             </button>
         </div>
@@ -48,26 +59,38 @@ const MaterialButton = (props) => {
 
 const DropdownMenu = (props) => {
     return (
-      <div className="headerDropdownContainer">
-        {props.menu}
-        <div className="dropdown">
-          <div className="upArrow"></div>
-          {props.firstMenu}
-          <ul className="headerDropdownMenu">
-            {
-              props.menus && props.menus.map((item, index) =>
-                <li key={index}><a href={item.href}>{item.label}</a></li>
-              )
-            }
-          </ul>
+        <div className="headerDropdownContainer">
+            {props.menu}
+            <div className="dropdown">
+                <div className="upArrow"></div>
+                {props.firstMenu}
+                <ul className="headerDropdownMenu">
+                    {
+                        props.menus && props.menus.map((item, index) =>
+                        <li key={index}>
+                        <a
+                          onClick={(e) => {
+                            if (item.onClick) {
+                              e.preventDefault();
+                              item.onClick && item.onClick();
+                            }
+                          }}
+                          href={`${item.href}`}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                        )
+                    }
+                </ul>
+            </div>
         </div>
-      </div>
     );
-  }
+}
 
 export {
     Modal,
     MaterialInput,
     MaterialButton,
     DropdownMenu
-} 
+}
