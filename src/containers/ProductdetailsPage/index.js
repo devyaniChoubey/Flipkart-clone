@@ -91,7 +91,7 @@ const ProductDetailsPage = (props) => {
               </div>
             </div>
           </div>
-          <div>
+          <div style={{lineHeight:"35px", fontSize:"50px"}}>
   
             {/* home > category > subCategory > productName */}
             <div className="breed">
@@ -118,19 +118,19 @@ const ProductDetailsPage = (props) => {
               <div>
                 <p style={{ 
                   color: '#212121', 
-                  fontSize: '14px',
+                  fontSize: '15px',
                   fontWeight: '600' 
                   }}>Available Offers</p>
                 <p style={{ display: 'flex' }}>
                   <span style={{
                     width: '100px',
-                    fontSize: '12px',
+                    fontSize: '15px',
                     color: '#878787',
                     fontWeight: '600',
                     marginRight: '20px'
                 }}>Description</span>
                 <span style={{
-                  fontSize: '12px',
+                  fontSize: '15px',
                   color: '#212121',
                 }}>{product.productDetails.description}</span>
                 </p>

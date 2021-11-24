@@ -1,4 +1,4 @@
-import {useSelector} from 'react'
+import { useSelector } from 'react-redux'
 import Layout from '../../components/Layout';
 import "./assets/css/style.css"
 import logo1 from "./assets/images/header/top-offers.png"
@@ -15,6 +15,9 @@ import logo11 from "./assets/images/carousel/slide2.jpg"
 import logo12 from "./assets/images/carousel/slide3.jpg"
 import logo13 from "./assets/images/carousel/slide4.jpg"
 import { Carousel } from 'react-responsive-carousel';
+import Card from '../../components/UI/Card';
+import { generatePublicUrl } from '../../urlConfig';
+import { Link } from 'react-router-dom';
 
 /**
 * @author
@@ -22,8 +25,8 @@ import { Carousel } from 'react-responsive-carousel';
 **/
 
 const HomePage = (props) => {
-    const product = useSelector(state => state.product);
-     return (
+    const product = useSelector(state => state.product)
+    return (
         <Layout>
             <div className="container">
                 <div className="menuHeader1">
@@ -69,12 +72,28 @@ const HomePage = (props) => {
                         <img src={logo12} style={{ width: "100%" }} />
                     </div>
                 </Carousel>
-                {/* {
-                    product.products.map((product, key) => (
-                          <div>{product.name}</div>
-                    ))
-                } */}
-                
+                {
+                    <Card headerLeft={"Shop for mobiles"}>
+                        <div style={{ display: 'flex', overflow: "hidden" }}>
+                            {product.products.map((product, key) => (
+                                <Link to={`/${product.slug}/${product._id}/p`} style={{display:'block'}} className="productContainer">
+                                    <div className="productImgContainer" style={{ display: 'block' }}>
+                                        <img src={generatePublicUrl(product.productPictures[0].img)} alt="samsung" />
+                                    </div>
+                                    <div className="productInfo">
+                                        <div style={{ margin: '5px 0' }}>{product.name}</div>
+                                        {/* <div>
+                                                    <span>4.5</span>&nbsp;
+                                                    <span>4567</span>
+                                                </div> */}
+                                        <div className="productPrice">{product.price}</div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </Card>
+                }
+
 
 
             </div>
@@ -88,7 +107,7 @@ const HomePage = (props) => {
                     </div>
                 </ul>
             </div>
-    
+
 
         </Layout>
     )

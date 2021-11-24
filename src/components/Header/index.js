@@ -67,7 +67,7 @@ const Header = (props) => {
       <DropdownMenu
         menu={
           <a className="loginButton" onClick={() => setLoginModal(true)}>
-            <IoIosArrowDown />
+            {/* <IoIosArrowDown /> */}
             Login
           </a>
         }
@@ -130,7 +130,7 @@ const Header = (props) => {
                   textColor="#ffffff"
                   style={{
 
-                    margin: ' 10px 40px 0 18px'
+                    margin: ' 20px 40px 19px 18px'
            
                   }}
                   onClick={userlogin}
@@ -145,7 +145,7 @@ const Header = (props) => {
                   textColor="#cd6deb"
                   className="inputElemment"
                   style={{
-                    margin: ' 0 40px 0 18px'
+                    margin: ' 20px 40px 19px 18px'
                   }}
                 />
               </div>
