@@ -57,22 +57,10 @@ const CartItem = (props) => {
                 <button className="cartActionBtn">save for later</button>
                 <button className="cartActionBtn">Remove</button>
             </div>
-            <PriceDetails
-                totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-                    return qty + cart.cartItems[key].qty;
-                }, 0)}
-                totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-                    const { price, qty } = cart.cartItems[key];
-                    return totalPrice + price * qty;
-                }, 0)}
-            />
+           
         </div>
     )
 
 }
 
 export default CartItem;
-
-// let sum = numbers.reduce(function (accumulator, current) {
-//     return accumulator + current;
-// });

@@ -28,7 +28,7 @@ const MaterialInput = (props) => {
 
     return (
         <div className="materialInput">
-            <input className="input" style={{ padding: "5px 5px", lineHeight: "58px" }} onChange={props.onChange} value={props.value} placeholder={props.placeholder} type={props.type} />
+            <input className="input" style={{ lineHeight: "58px" }} onChange={props.onChange} value={props.value} placeholder={props.placeholder} type={props.type} />
         </div>
     )
 }

@@ -59,3 +59,21 @@ export const addAddress = (payload) => {
          }
      }
 }
+
+export const addOrder = (payload) => {
+    return async dispatch =>{
+        try{
+           const res = await axios.post('/addOrder',payload);
+           dispatch({type: addressConstants.ADD_USER_ADDRESS_REQUEST})
+           if(res.status === 201){
+             console.log(res);
+             
+           }else{
+               const { error } = res.data;
+               console.log(res);
+           }
+        }catch(error){
+           console.log(error);
+        }
+    }
+}
