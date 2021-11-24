@@ -67,6 +67,12 @@ export default (state = initState, action) =>{
                 error:action.payload.error
             }
             break;
+        case productConstants.GET_ALL_PRODUCT:
+            state= {
+                ...state,
+                products :action.payload.products
+            }
+            break;
     }
     return state;
 }

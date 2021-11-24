@@ -28,7 +28,7 @@ const MaterialInput = (props) => {
 
     return (
         <div className="materialInput">
-            <input className="input" onChange={props.onChange} value={props.value} type={props.type} />
+            <input className="input" style={{ padding: "5px 5px", lineHeight: "58px" }} onChange={props.onChange} value={props.value} placeholder={props.placeholder} type={props.type} />
         </div>
     )
 }
@@ -62,35 +62,47 @@ const DropdownMenu = (props) => {
         <div className="headerDropdownContainer">
             {props.menu}
             <div className="dropdown">
-                <div className="upArrow"></div>
-                {props.firstMenu}
-                <ul className="headerDropdownMenu">
-                    {
-                        props.menus && props.menus.map((item, index) =>
-                        <li key={index}>
-                        <a
-                          onClick={(e) => {
-                            if (item.onClick) {
-                              e.preventDefault();
-                              item.onClick && item.onClick();
-                            }
-                          }}
-                          href={`${item.href}`}
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                        )
-                    }
-                </ul>
+                <div className="upArrowContainer">
+                    <div className="upArrow"></div>
+                </div>
+                <div className="dropdownMenu">
+                    {props.firstMenu}
+                    <ul className="headerDropdownMenu">
+                        {props.menus &&
+                            props.menus.map((item, index) => (
+                                <li key={index}>
+                                    <a
+                                        onClick={(e) => {
+                                            if (item.onClick) {
+                                                e.preventDefault();
+                                                item.onClick && item.onClick();
+                                            }
+                                        }}
+                                        href={`${item.href}`}
+                                    >
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );
 }
 
+const Anchor = (props) => {
+    return (
+      <button {...props} className="anchorButton">
+        {props.name}
+      </button>
+    );
+  };
+
 export {
     Modal,
     MaterialInput,
     MaterialButton,
-    DropdownMenu
+    DropdownMenu,
+    Anchor
 }

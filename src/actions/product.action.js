@@ -17,6 +17,22 @@ export const getProductsByslug = (slug) => {
     }
 }
 
+export const getAllProducts = () => {
+    return async dispatch => {
+        const res = await axiosInstance.get(`/productss/all`);
+        if (res.status === 200) {
+            dispatch({
+                type: productConstants.GET_ALL_PRODUCT,
+                payload: {products : res.data.products}
+            })
+        } else {
+
+        }
+        console.log(res);
+    }
+}
+
+
 
 
 export const getProductPage = (payload) => {

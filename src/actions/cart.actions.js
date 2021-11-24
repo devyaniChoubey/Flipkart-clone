@@ -27,6 +27,7 @@ const getCartItems = () => {
     }
 }
 
+
 export const addToCart = (product, qty1 = 1) => {
     return async dispatch => {
 

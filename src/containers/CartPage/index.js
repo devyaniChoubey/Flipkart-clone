@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart,getCartItems } from '../../actions';
 import Layout from '../../components/Layout'
+import { MaterialButton } from '../../components/MaterialUI';
 import Card from '../../components/UI/Card';
 import CartItem from './CartItem';
+import {useNavigate} from 'react-router-dom'
 
 import './index.css';
 
@@ -21,7 +23,7 @@ if logged in then add products to users cart database from localStorage
 */
 
 const CartPage = (props) => {
-
+    const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
     const auth = useSelector(state => state.auth);
    // const cartItems = cart.cartItems;
@@ -56,15 +58,31 @@ const CartPage = (props) => {
                 <Card
                     headerLeft={`My Cart`}
                     headerRight={<div>Deliver to</div>}
+                    style={{ width: 'calc(100% - 400px)', overflow: 'hidden' }}
                 >
                     {
                         Object.keys(cartItems).map((key,index) => (
                             <CartItem key={index} cartItem={cartItems[key]} onQuantityInc={onQuantityIncrement} onQuantityDec={onQuantityDecrement}/>
                         ))
                     }
+                    <div style={{
+                        width: '100%',
+                        display: 'flex',
+                        background: '#ffffff',
+                        justifyContent: 'flex-end',
+                        // boxShadow: '0 0 10px 10px #eee',
+                        borderColor:'black',
+                        padding: '10px 0',
+                        boxSizing: 'border-box',
+                        marginTop:'10px'
+                    }}>
+                        <div style={{ width: '250px' }}>
+                            <MaterialButton title="PLACE ORDER" bgColor="#cd6deb" onClick={() => navigate('/checkout')}/>
+                        </div>
+                    </div>
                     </Card>
                 <Card style={{
-                    width: '500px'
+                    width: '380px'
                 }} headerLeft="Price"></Card>
             </div>
         </Layout>

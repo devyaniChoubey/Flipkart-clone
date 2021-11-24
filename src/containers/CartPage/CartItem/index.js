@@ -1,6 +1,8 @@
 import './index.css';
 import { useState } from 'react';
 import { generatePublicUrl } from '../../../urlConfig';
+import PriceDetails from '../../../components/PriceDetails';
+import { useSelector } from 'react-redux';
 
 
 /**
@@ -10,21 +12,22 @@ import { generatePublicUrl } from '../../../urlConfig';
 
 const CartItem = (props) => {
 
-    const {_id,name, price,img} = props.cartItem;
-    const[qty,setQty] = useState(props.cartItem.qty);
+    const { _id, name, price, img } = props.cartItem;
+    const [qty, setQty] = useState(props.cartItem.qty);
 
-    const onQuantityIncrement= () => {
+    const onQuantityIncrement = () => {
         setQty(qty + 1);
-        props.onQuantityInc(_id, qty +1)
+        props.onQuantityInc(_id, qty + 1)
     }
 
-    const onQuantityDecrement= () =>{
-        if(qty <= 1) return;
+    const onQuantityDecrement = () => {
+        if (qty <= 1) return;
         setQty(qty - 1);
-        props.onQuantityDec(_id,qty - 1);
+        props.onQuantityDec(_id, qty - 1);
     }
+    const cart = useSelector(state => state.cart)
 
-    
+
     return (
         <div className="cartItemContainer">
             <div className="flexRow">
@@ -54,9 +57,22 @@ const CartItem = (props) => {
                 <button className="cartActionBtn">save for later</button>
                 <button className="cartActionBtn">Remove</button>
             </div>
+            <PriceDetails
+                totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+                    return qty + cart.cartItems[key].qty;
+                }, 0)}
+                totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+                    const { price, qty } = cart.cartItems[key];
+                    return totalPrice + price * qty;
+                }, 0)}
+            />
         </div>
     )
 
 }
 
 export default CartItem;
+
+// let sum = numbers.reduce(function (accumulator, current) {
+//     return accumulator + current;
+// });

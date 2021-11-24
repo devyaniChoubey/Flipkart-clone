@@ -47,19 +47,14 @@ const Header = (props) => {
         menu={
           <a className="fullName">
             {auth.user.fullName}
+            <IoIosArrowDown />
           </a>
+          
         }
         menus={[
           { label: 'My Profile', href: '', icon: null },
-          { label: 'SuperCoin Zone', href: '', icon: null },
-          { label: 'Flipkart Plus Zone', href: '', icon: null },
           { label: 'Orders', href: '', icon: null },
           { label: 'Wishlist', href: '', icon: null },
-          { label: 'My Chats', href: '', icon: null },
-          { label: 'Coupons', href: '', icon: null },
-          { label: 'Rewards', href: '', icon: null },
-          { label: 'Notifications', href: '', icon: null },
-          { label: 'Gift Cards', href: '', icon: null },
           { label: 'Logout', href: '', icon: null,onClick:logout }
         ]}
         
@@ -72,6 +67,7 @@ const Header = (props) => {
       <DropdownMenu
         menu={
           <a className="loginButton" onClick={() => setLoginModal(true)}>
+            <IoIosArrowDown />
             Login
           </a>
         }
@@ -111,9 +107,10 @@ const Header = (props) => {
               <MaterialInput
                   type="text"
                   label="Enter Email/Enter Mobile Number"
-                  placeholder="Emails"
-                 value={email}
-                 onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter Email/Enter Mobile Number"
+                  value={email}
+                 
+                  onChange={(e) => setEmail(e.target.value)}
 
                 />
 
@@ -122,6 +119,7 @@ const Header = (props) => {
                 <MaterialInput
                   type="password"
                   label="Enter Password"
+                  placeholder="Enter Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 // rightElement={<a href="#">Forgot?</a>}
@@ -132,7 +130,8 @@ const Header = (props) => {
                   textColor="#ffffff"
                   style={{
 
-                    margin: '40px 0 20px 0'
+                    margin: ' 10px 40px 0 18px'
+           
                   }}
                   onClick={userlogin}
                 />
@@ -143,10 +142,10 @@ const Header = (props) => {
                 <MaterialButton
                   title="Request OTP"
                   bgColor="#ffffff"
-                  textColor="#2874f0"
+                  textColor="#cd6deb"
                   className="inputElemment"
                   style={{
-                    margin: "20px 0"
+                    margin: ' 0 40px 0 18px'
                   }}
                 />
               </div>
@@ -161,11 +160,11 @@ const Header = (props) => {
           <a href="">
             <img src={Logo} className="logoimage" alt="" />
           </a>
-          <a style={{ marginTop: '-10px' }}>
+          {/* <a style={{ marginTop: '-10px' }}>
             <span className="exploreText">D</span>
             <span className="plusText">Mart</span>
             <img src={goldenStar} className="goldenStar" alt="" />
-          </a>
+          </a> */}
         </div>
         <div style={{
           padding: '0 10px'
