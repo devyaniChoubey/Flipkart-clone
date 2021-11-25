@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 * @author
 * @function 
 **/
-import Logo from '../../images/logo/lets_shop.jpeg';
+import Logo from '../../images/logo/a.png';
 import goldenStar from '../../images/logo/golden-star.png';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
 import {
@@ -163,7 +163,7 @@ const Header = (props) => {
       </Modal>
       <div className="subHeader">
         <div className="logo">
-          <a href="">
+          <a href="/">
             <img src={Logo} className="logoimage" alt="" />
           </a>
           {/* <a style={{ marginTop: '-10px' }}>

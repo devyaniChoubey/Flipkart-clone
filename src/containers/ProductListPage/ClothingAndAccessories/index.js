@@ -5,10 +5,15 @@ import { generatePublicUrl } from "../../../urlConfig";
 import { BiRupee } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router';
+import { 
+  IoIosArrowForward, 
+  IoIosStar, 
+  IoMdCart 
+} from 'react-icons/io';
 
 import "./index.css";
 import { getProductsByslug } from "../../../actions";
-import axios from "axios";
+
 
 /**
  * @author
@@ -21,21 +26,16 @@ const ClothingAndAccessories = (props) => {
   let { slug } = useParams();
 
   useEffect(async () => {
-    console.log("slug",slug);
-    const res = await axios.get(`http://localhost:2000/api/products/${slug}`);
-    // dispatch(getProductsByslug(slug));
-    console.log(res)
+    console.log("slug", slug);
+    dispatch(getProductsByslug(slug));
   }, []);
 
   return (
     <div style={{ padding: "10px" }}>
       <Card
-        style={{
-          boxSizing: "border-box",
-          padding: "10px",
-          display: "flex",
-        }}
+          headerLeft={product.categoryName}
       >
+        <div style={{display:"flex"}}>
         {product.product.map((product) => (
           <div className="caContainer">
             <Link
@@ -46,16 +46,26 @@ const ClothingAndAccessories = (props) => {
             </Link>
             <div>
               <div className="caProductName">{product.name}</div>
-              <div className="caProductPrice">
-                <BiRupee />
-                {product.price}
+              <div className="extraOffer">Extra <BiRupee />{product.price / 100} off </div>
+              <div>
+
+                <span className="ratingCount">4.3 <IoIosStar /></span>&nbsp;
+                <span><BiRupee/>{product.price}</span>
               </div>
+              
             </div>
           </div>
         ))}
+        </div>
       </Card>
     </div>
+
+
   );
 };
 
 export default ClothingAndAccessories;
+
+
+
+

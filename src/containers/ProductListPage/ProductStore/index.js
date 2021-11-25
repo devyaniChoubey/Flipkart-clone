@@ -29,7 +29,7 @@ const ProductStore = (props) => {
             {
                 Object.keys(product.productsByPrice).map((key, index) => {
                     return (
-                        <Card headerLeft={`${slug} mobile under ${priceRange[key]}`} headerRight={<button>view all</button>} style={{width :'calc(100% - 50px)',margin:'20px'}}>
+                        <Card headerLeft={`${slug.split("-")[0]} mobile under ${priceRange[key]}`} headerRight={<button>view all</button>} style={{width :'calc(100% - 50px)',margin:'20px'}}>
                             <div style={{ display: 'flex' }}>
                                 {
                                     product.productsByPrice[key].map(product => (

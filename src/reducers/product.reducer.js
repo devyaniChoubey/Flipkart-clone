@@ -10,6 +10,7 @@ const initState = {
         under20k:[],
         under30k:[]
     },
+    categoryName : null,
     pageRequest: false,
     page: {},
     error: null,
@@ -25,7 +26,8 @@ export default (state = initState, action) =>{
                 product :action.payload.product,
                 productsByPrice:{
                     ...action.payload.productsByPrice
-                }
+                },
+                categoryName:action.payload.categoryName
             }
             break;
         case productConstants.GET_PRODUCT_PAGE_REQUEST:

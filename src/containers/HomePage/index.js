@@ -8,6 +8,12 @@ import { Carousel } from 'react-responsive-carousel';
 import Card from '../../components/UI/Card';
 import { generatePublicUrl } from '../../urlConfig';
 import { Link } from 'react-router-dom';
+import { BiRupee } from 'react-icons/bi';
+import { 
+    IoIosArrowForward, 
+    IoIosStar, 
+    IoMdCart 
+  } from 'react-icons/io';
 
 /**
 * @author
@@ -53,7 +59,7 @@ const HomePage = (props) => {
                     </div>
                 </Carousel>
                 {
-                    <Card headerLeft={"Shop for mobiles"}>
+                    <Card headerLeft={'Deals of the day'}>
                         <div style={{ display: 'flex', overflow: "hidden" }}>
                             {product.products.map((product, key) => (
                                 <Link to={`/${product.slug}/${product._id}/p`} style={{display:'block'}} className="productContainer">
@@ -62,11 +68,14 @@ const HomePage = (props) => {
                                     </div>
                                     <div className="productInfo">
                                         <div style={{ margin: '5px 0' }}>{product.name}</div>
-                                        {/* <div>
-                                                    <span>4.5</span>&nbsp;
-                                                    <span>4567</span>
-                                                </div> */}
-                                        <div className="productPrice">{product.price}</div>
+                                        <div className="extraOffer">Extra <BiRupee />{product.price/100} off </div>
+                                        
+                                        <div>
+                                        
+                                        <span className="ratingCount">4.3 <IoIosStar /></span>&nbsp;
+                                                    <span>{product.price}</span>
+                                                </div>
+                                        <div className="productPrice"><BiRupee />{product.price}</div>
                                     </div>
                                 </Link>
                             ))}

@@ -4,12 +4,13 @@ import { productConstants } from "./constants";
 
 export const getProductsByslug = (slug) => {
     return async dispatch => {
-        const res = await axios.get(`http://localhost:2000/api/products/${slug}`);
+        const res = await axiosInstance.get(`/products/${slug}`);
         if (res.status === 200) {
             dispatch({
                 type: productConstants.GET_PRODUCTS_BY_SLUG,
                 payload: {
-                    product : res.data.product
+                    product : res.data.product,
+                    categoryName : res.data.categoryName
                 }
             })
         } else {

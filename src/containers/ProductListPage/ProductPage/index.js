@@ -28,7 +28,7 @@ const ProductPage = (props) => {
      
 
         <div style={{ margin: '0 10px' }}>
-            <h3>{page.title}</h3>
+            <h3 style={{textAlign:"center"}}>{page.title} Store</h3>
             <Carousel renderThumbs={() => { }}>
                 {
                     page.banners && page.banners.map((banner, index) => (
