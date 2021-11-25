@@ -23,7 +23,7 @@ const MenuHeader = (props) => {
         let categorie = [];
         for (let category of categories) {
             categorie.push(
-                <li key={category.name}>
+                <li key={category.name} style={{width : "8.5rem"}}>
                     {
                         category.parentId ? <a href={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</a> : <span>{category.name}</span>
                     }

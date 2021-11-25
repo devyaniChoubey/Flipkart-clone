@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import getParams from '../../utils/getParams';
 import ProductPage from './ProductPage';
 import ProductStore from './ProductStore';
+import ClothingAndAccessories from './ClothingAndAccessories'
 
 const ProductListPage = (props) => {
 
@@ -23,7 +24,7 @@ const ProductListPage = (props) => {
                 content = <ProductPage {...props} />
                 break;
             default:
-                content = null;
+                content = <ClothingAndAccessories/>;
         }
         console.log({content})
         return content;

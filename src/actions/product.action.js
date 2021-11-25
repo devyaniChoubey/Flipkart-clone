@@ -1,14 +1,16 @@
-
+import axios from "axios"
 import axiosInstance from "../helpers/axios"
 import { productConstants } from "./constants";
 
 export const getProductsByslug = (slug) => {
     return async dispatch => {
-        const res = await axiosInstance.get(`/products/${slug}`);
+        const res = await axios.get(`http://localhost:2000/api/products/${slug}`);
         if (res.status === 200) {
             dispatch({
                 type: productConstants.GET_PRODUCTS_BY_SLUG,
-                payload: res.data
+                payload: {
+                    product : res.data.product
+                }
             })
         } else {
 

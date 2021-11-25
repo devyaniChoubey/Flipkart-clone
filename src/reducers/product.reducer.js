@@ -1,6 +1,7 @@
 import { productConstants } from "../actions/constants"
 
 const initState = {
+    product : [],
     products : [],
     productsByPrice:{
         under5k:[],
@@ -21,7 +22,7 @@ export default (state = initState, action) =>{
         case productConstants.GET_PRODUCTS_BY_SLUG:
             state= {
                 ...state,
-                products :action.payload.products,
+                product :action.payload.product,
                 productsByPrice:{
                     ...action.payload.productsByPrice
                 }

@@ -44,6 +44,7 @@ const buildNewCategories = (parentId, categories, category) => {
                 _id: category._id,
                 name: category.name,
                 slug: category.slug,
+                categoryImage : category.categoryImage,
                 children: []
             }
         ];
@@ -59,6 +60,7 @@ const buildNewCategories = (parentId, categories, category) => {
                     name: category.name,
                     slug: category.slug,
                     parentId: category.parentId,
+                    categoryImage : category.categoryImage,
                     children: category.children
                 }], category) : []
             });

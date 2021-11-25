@@ -1,19 +1,9 @@
 import { useSelector } from 'react-redux'
 import Layout from '../../components/Layout';
 import "./assets/css/style.css"
-import logo1 from "./assets/images/header/top-offers.png"
-import logo2 from "./assets/images/header/grocery.png"
-import logo3 from "./assets/images/header/mobiles.png"
-import logo4 from "./assets/images/header/fashion.png"
-import logo5 from "./assets/images/header/electronics.png"
-import logo6 from "./assets/images/header/home.jpg"
-import logo7 from "./assets/images/header/appliances.png"
-import logo8 from "./assets/images/header/travel.png"
-import logo9 from "./assets/images/header/beauty-toys.png"
 import logo10 from "./assets/images/carousel/slide1.jpg"
 import logo11 from "./assets/images/carousel/slide2.jpg"
 import logo12 from "./assets/images/carousel/slide3.jpg"
-import logo13 from "./assets/images/carousel/slide4.jpg"
 import { Carousel } from 'react-responsive-carousel';
 import Card from '../../components/UI/Card';
 import { generatePublicUrl } from '../../urlConfig';
@@ -25,34 +15,24 @@ import { Link } from 'react-router-dom';
 **/
 
 const HomePage = (props) => {
-    const product = useSelector(state => state.product)
+    const product = useSelector(state => state.product);
+    const category = useSelector(state => state.category);
+
     return (
         <Layout>
             <div className="container">
                 <div className="menuHeader1">
-
+                
                     <ul className="header-images-ul">
-                        <li><a href="#"><img src={logo1} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo2} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo3} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo4} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo5} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo6} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo7} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo8} className="header-images" /></a></li>
-                        <li><a href="#"><img src={logo9} className="header-images" /></a></li>
+                  
+                        {category.categories.map(category => <li><a href="#"><img src={category.categoryImage} className="header-images" /></a></li>)}
+    
                     </ul>
 
                     <ul className="header-items-ul">
-                        <li><a href="#" className="header-items">Top Offers</a></li>
-                        <li><a href="#" className="header-items">Grocery</a></li>
-                        <li><a href="#" className="header-items">Mobiles</a></li>
-                        <li><a href="#" className="header-items">Fashion</a></li>
-                        <li><a href="#" className="header-items">Electronics</a></li>
-                        <li><a href="#" className="header-items">Home</a></li>
-                        <li><a href="#" className="header-items">Appliances</a></li>
-                        <li><a href="#" className="header-items">Travel</a></li>
-                        <li><a href="#" className="header-items">Toys & more</a></li>
+                    
+                        {category.categories.map(category => <li><a href="#" className="header-items">{category.name}</a></li>)}
+                       
                     </ul>
                 </div>
 
