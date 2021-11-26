@@ -4,7 +4,7 @@ import Card from "../../../components/UI/Card";
 import { generatePublicUrl } from "../../../urlConfig";
 import { BiRupee } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { 
   IoIosArrowForward, 
   IoIosStar, 
@@ -12,7 +12,8 @@ import {
 } from 'react-icons/io';
 
 import "./index.css";
-import { getProductsByslug } from "../../../actions";
+import { getProductsBycategory, getProductsByslug } from "../../../actions";
+import getParams from "../../../utils/getParams";
 
 
 /**
@@ -24,10 +25,18 @@ const ClothingAndAccessories = (props) => {
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
   let { slug } = useParams();
+  let location = useLocation();
+  const params = getParams(location.search);
+ 
 
   useEffect(async () => {
-    console.log("slug", slug);
-    dispatch(getProductsByslug(slug));
+    console.log(params)
+    if(slug === 'bannerClicked'  || slug === 'productClicked'){
+      dispatch(getProductsBycategory(params.categoryId))
+    }else{
+      dispatch(getProductsByslug(slug));
+    }
+    
   }, []);
 
   return (

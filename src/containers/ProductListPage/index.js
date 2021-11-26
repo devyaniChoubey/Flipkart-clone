@@ -11,10 +11,12 @@ const ProductListPage = (props) => {
 
     let location = useLocation();
     let urlParams = useParams();
+    let { slug } = useParams();
 
     const renderProduct = () => {
         const params = getParams(location.search);
-        console.log(params);
+        
+        
         let content = null;
         switch (params.type) {
             case 'store':
@@ -26,7 +28,10 @@ const ProductListPage = (props) => {
             default:
                 content = <ClothingAndAccessories/>;
         }
-        console.log({content})
+
+        if((slug === 'bannerClicked' || slug === 'productClicked') && params.type === 'page'){
+            content = <ClothingAndAccessories/>;
+        }
         return content;
     }
     return (

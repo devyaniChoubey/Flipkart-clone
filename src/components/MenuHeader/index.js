@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './index.css';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllCategory } from '../../actions';
+import { Link } from 'react-router-dom';
 
 /**
 * @author
@@ -25,7 +26,7 @@ const MenuHeader = (props) => {
             categorie.push(
                 <li key={category.name} style={{width : "8.5rem"}}>
                     {
-                        category.parentId ? <a href={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</a> : <span>{category.name}</span>
+                        category.parentId ? <Link to={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</Link> : <span>{category.name}</span>
                     }
                     {console.log(category.parentId)}
                     

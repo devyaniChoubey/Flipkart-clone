@@ -8,10 +8,7 @@ export const getProductsByslug = (slug) => {
         if (res.status === 200) {
             dispatch({
                 type: productConstants.GET_PRODUCTS_BY_SLUG,
-                payload: {
-                    product : res.data.product,
-                    categoryName : res.data.categoryName
-                }
+                payload: res.data
             })
         } else {
 
@@ -19,6 +16,22 @@ export const getProductsByslug = (slug) => {
         console.log(res);
     }
 }
+
+export const getProductsBycategory = (categoryId) => {
+    return async dispatch => {
+        const res = await axiosInstance.get(`/product1s/${categoryId}`);
+        if (res.status === 200) {
+            dispatch({
+                type: productConstants.GET_PRODUCTS_BY_SLUG,
+                payload: res.data
+            })
+        } else {
+
+        }
+        console.log(res);
+    }
+}
+
 
 export const getAllProducts = () => {
     return async dispatch => {

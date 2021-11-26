@@ -6,6 +6,7 @@ import getParams from '../../../utils/getParams';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Card from '../../../components/UI/Card';
+import { Link } from 'react-router-dom';
 
 
 const ProductPage = (props) => {
@@ -32,11 +33,11 @@ const ProductPage = (props) => {
             <Carousel renderThumbs={() => { }}>
                 {
                     page.banners && page.banners.map((banner, index) => (
-                        <a key={index}
+                        <Link key={index}
                             style={{ display: 'block' }}
-                            href={banner.navigateTo}>
+                            to={banner.navigateTo}>
                             <img src={banner.img} alt="" />
-                        </a>
+                        </Link>
                     ))
                 }
             </Carousel>
@@ -54,11 +55,13 @@ const ProductPage = (props) => {
                             height: '200px',
                             margin: '5px'
                         }}>
+                            <Link to={product.navigateTo}>
                             <img style={{
                                 width: '100%',
                                 height: '100%',
                                 objectFit:'contain'
                             }} src={product.img} alt="" />
+                            </Link>
                         </Card>
                     ))
                 }

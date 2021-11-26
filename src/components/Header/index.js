@@ -15,6 +15,7 @@ import {
   DropdownMenu
 } from '../MaterialUI';
 import { login,signout } from '../../actions/auth.action';
+import { Link } from 'react-router-dom';
 const Header = (props) => {
 
   const [loginModal, setLoginModal] = useState(false);
@@ -163,9 +164,9 @@ const Header = (props) => {
       </Modal>
       <div className="subHeader">
         <div className="logo">
-          <a href="/">
+          <Link to="/">
             <img src={Logo} className="logoimage" alt="" />
-          </a>
+          </Link>
           {/* <a style={{ marginTop: '-10px' }}>
             <span className="exploreText">D</span>
             <span className="plusText">Mart</span>
@@ -206,10 +207,10 @@ const Header = (props) => {
             ]}
           />
           <div>
-            <a href={`/cart`} style={{textDecoration :"none"}} className="cart">
+            <Link to={`/cart`} style={{textDecoration :"none"}} className="cart">
               <IoIosCart />
               <span style={{ margin: '0 10px' }}>Cart</span>
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -23,7 +23,7 @@ export default (state = initState, action) =>{
         case productConstants.GET_PRODUCTS_BY_SLUG:
             state= {
                 ...state,
-                product :action.payload.product,
+                product :action.payload.products,
                 productsByPrice:{
                     ...action.payload.productsByPrice
                 },
