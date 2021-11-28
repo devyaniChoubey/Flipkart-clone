@@ -29,24 +29,24 @@ const CartItem = (props) => {
 
 
     return (
-        <div className="cartItemContainer">
-            <div className="flexRow">
-
+        <div className="cartItemContainer" style={{padding : "20px 0 20px 0",borderBottom:"1px solid #f0f0f0"}}>
+            <div className="flexRow" style={{margin:"0 20px 0 20px"}}>
                 <div className="cartProImgContainer">
                     <img src={generatePublicUrl(img)} alt={''} />
                 </div>
                 <div className="cartItemDetails">
                     <div>
-                        <p>{name}</p>
+                        <p style={{marginBottom:"10px"}}>{name}</p>
                         <p>Rs. {price}</p>
                     </div>
-                    <div>Delivery in 3 - 5 days</div>
                 </div>
+                <div className="right">Delivery in 3 - 5 days</div>
+                
 
             </div>
             <div style={{
                 display: 'flex',
-                margin: '5px 0'
+                margin:"10px 20px 0 20px"
             }}>
                 {/* quantity control */}
                 <div className="quantityControl">

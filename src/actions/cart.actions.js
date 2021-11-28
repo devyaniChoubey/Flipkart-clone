@@ -8,7 +8,7 @@ const getCartItems = () => {
         try {
             dispatch({ type: cartConstants.ADD_TO_CART_REQUEST })
             const res = await axios.post('/user/getCartItems');
-            console.log("GETCARTITEMS", res);
+
             if (res.status === 200) {
                 const { cartItems } = res.data;
                 console.log({ getCartItems: cartItems })
@@ -38,10 +38,6 @@ export const addToCart = (product, qty1 = 1) => {
                 cartItems
             },
             auth } = store.getState();
-
-        //cartItems = cart.cartItems;
-
-        console.log('action::products', cartItems);
         const qty = cartItems[product._id] ? parseInt(cartItems[product._id].qty + qty1) : 1;
         cartItems[product._id] = {
             ...product,
@@ -57,9 +53,9 @@ export const addToCart = (product, qty1 = 1) => {
                     quantity: qty
                 }]
             }
-            console.log(payload)
+    
             const res = await axios.post('/user/cart/addtocart', payload);
-            console.log(res);
+          
             if (res.status === 200) {
                 dispatch(getCartItems())
             }
@@ -67,7 +63,7 @@ export const addToCart = (product, qty1 = 1) => {
             localStorage.setItem('cart', JSON.stringify(cartItems))
         }
 
-        console.log("addToCart::", cartItems)
+      
 
         dispatch({
             type: cartConstants.ADD_TO_CART_SUCCESS,

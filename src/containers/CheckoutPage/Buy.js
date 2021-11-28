@@ -112,11 +112,16 @@ const CheckoutPage = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
  
-    const { state } = useLocation();
+    
+    if(state.isBuyTrue){
+        const cart = state.cart;
+    }
 
     useEffect(() => {
-        console.log("state",state)
+        console.log("state1",state);
+        
     },[])
+
     const onAddressSubmit = (addr) => {
         setSelectedAddress(addr);
         setConfirmAddress(true);
@@ -124,6 +129,7 @@ const CheckoutPage = (props) => {
     };
 
     const selectAddress = (addr) => {
+        //console.log(addr);
         const updatedAddress = address.map((adr) =>
             adr._id === addr._id
                 ? { ...adr, selected: true }

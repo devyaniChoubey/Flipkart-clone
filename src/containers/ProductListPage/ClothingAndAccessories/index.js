@@ -30,7 +30,7 @@ const ClothingAndAccessories = (props) => {
  
 
   useEffect(async () => {
-    console.log(params)
+  
     if(slug === 'bannerClicked'  || slug === 'productClicked'){
       dispatch(getProductsBycategory(params.categoryId))
     }else{

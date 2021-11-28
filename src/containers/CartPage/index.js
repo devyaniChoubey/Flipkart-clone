@@ -43,7 +43,7 @@ const CartPage = (props) => {
     }, [auth.authenticate])
 
     const onQuantityIncrement = (_id, qty) => {
-        console.log({ _id, qty });
+      
         const { name, price, img } = cartItems[_id];
         dispatch(addToCart({ _id, name, price, img }, +1))
     }
@@ -108,7 +108,7 @@ const CartPage = (props) => {
                             <Card
                                 headerLeft={`My Cart`}
                                 headerRight={<div>Deliver to</div>}
-                                style={{ width: 'calc(100% - 400px)', overflow: 'hidden' }}
+                                style={{ width: 'calc(100% - 400px)', overflow: 'hidden',margin:"0px" }}
                             >
                                 {
                                     Object.keys(cartItems).map((key, index) => (

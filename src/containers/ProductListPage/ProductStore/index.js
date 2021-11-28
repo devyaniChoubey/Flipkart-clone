@@ -18,7 +18,7 @@ const ProductStore = (props) => {
 
     useEffect(() => {
         dispatch(getProductsByslug(slug));
-        console.log(props)
+     
     }, [])
     
     return (

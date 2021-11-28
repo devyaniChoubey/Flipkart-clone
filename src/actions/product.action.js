@@ -13,7 +13,7 @@ export const getProductsByslug = (slug) => {
         } else {
 
         }
-        console.log("products Slug",res);
+      
     }
 }
 
@@ -28,7 +28,7 @@ export const getProductsBycategory = (categoryId) => {
         } else {
 
         }
-        console.log(res);
+      
     }
 }
 
@@ -44,7 +44,7 @@ export const getAllProducts = () => {
         } else {
 
         }
-        console.log(res);
+      
     }
 }
 
@@ -84,7 +84,7 @@ export const getProductDetailsById =(payload) =>{
     return async dispatch =>{
         dispatch({type:productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST})
         const {productId} = payload.params;
-        console.log(productId)
+      
         let res;
         try{
            
@@ -96,7 +96,7 @@ export const getProductDetailsById =(payload) =>{
             }
         })
         }catch(error){
-            console.log(error);
+          
             dispatch({
                 type: productConstants.GET_PRODUCT_DETAILS_BY_ID_FAILURE,
                 payload : {

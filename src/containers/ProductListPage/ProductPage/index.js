@@ -17,7 +17,7 @@ const ProductPage = (props) => {
 
     useEffect(() => {
         const params = getParams(location.search);
-        console.log({ para : params });
+
         const payload = {
             params
         }

@@ -28,7 +28,7 @@ const MenuHeader = (props) => {
                     {
                         category.parentId ? <a href={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</a> : <span>{category.name}</span>
                     }
-                    {console.log(category.parentId)}
+                    
 
                     {category.children.length > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
                 </li>

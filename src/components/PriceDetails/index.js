@@ -8,7 +8,7 @@ import Card from "../../components/UI/Card";
 
 const PriceDetails = (props) => {
   return (
-    <Card headerLeft={"Price Details"} style={{ maxWidth: "380px" }}>
+    <Card headerLeft={"Price Details"} style={{ maxWidth: "380px",margin:"0px" }}>
       <div
         style={{
           padding: "20px",

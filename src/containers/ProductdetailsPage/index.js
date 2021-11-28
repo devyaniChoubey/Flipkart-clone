@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, getProductDetailsById } from '../../actions';
 import Layout from '../../components/Layout';
-import {useParams,useNavigate} from 'react-router-dom'
+import {useParams,useNavigate} from 'react-router'
 import { 
   IoIosArrowForward, 
   IoIosStar, 
@@ -26,9 +26,10 @@ const ProductDetailsPage = (props) => {
                 productId 
             }
         } 
-        console.log(productId)
+        
         dispatch(getProductDetailsById(payload))
     },[])
+
 
     if(Object.keys(product.productDetails).length === 0){
         return null;
@@ -85,7 +86,13 @@ const ProductDetailsPage = (props) => {
                   style={{
                     marginLeft: '5px'
                   }}
-                  onClick={() => navigate('/checkout')}
+                  onClick={() => {
+                    const {_id,name,price} = product.productDetails;
+                    const img = product.productDetails.productPictures[0].img;
+                    const qty = 1;
+                    const cartItems = { _id, name,img,price,qty}
+                    navigate('/checkout', { state: {cartItems,isBuyTrue : true} });
+                  }}
                   icon={<AiFillThunderbolt />}
                 />
               </div>
