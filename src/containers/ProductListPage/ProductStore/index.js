@@ -6,17 +6,13 @@ import { getProductsByslug } from '../../../actions';
 import Card from '../../../components/UI/Card';
 import { generatePublicUrl } from '../../../urlConfig';
 import './index.css';
+import { MaterialButton } from '../../../components/MaterialUI';
+import Rating from '../../../components/UI/Rating';
+import Price from '../../../components/UI/price';
 
 const ProductStore = (props) => {
     const product = useSelector(state => state.product);
-    const [priceRange, setPriceRange] = useState({
-        under5k: 5000,
-        under10k: 10000,
-        under15k: 15000,
-        under20k: 20000,
-        under25k: 25000,
-        under30k: 30000
-    })
+    const priceRange = product.priceRange;
     const dispatch = useDispatch();
     let { slug } = useParams();
 
@@ -24,12 +20,14 @@ const ProductStore = (props) => {
         dispatch(getProductsByslug(slug));
         console.log(props)
     }, [])
+    
     return (
         <>
             {
                 Object.keys(product.productsByPrice).map((key, index) => {
                     return (
-                        <Card headerLeft={`${slug.split("-")[0]} mobile under ${priceRange[key]}`} headerRight={<button>view all</button>} style={{width :'calc(100% - 50px)',margin:'20px'}}>
+                        
+                        <Card headerLeft={`${slug.split("-")[0]} mobile under ${priceRange[key]}`} headerRight={<MaterialButton title="view all" style={{width : "90px",padding:"2px 3px"}}/>} style={{width :'calc(100% - 50px)',margin:'20px'}}>
                             <div style={{ display: 'flex' }}>
                                 {
                                     product.productsByPrice[key].map(product => (
@@ -40,10 +38,10 @@ const ProductStore = (props) => {
                                             <div className="productInfo">
                                                 <div style={{ margin: '5px 0' }}>{product.name}</div>
                                                 <div>
-                                                    <span>4.5</span>&nbsp;
-                                                    <span>4567</span>
+                                                    <Rating value={4.3}/>&nbsp;
+    
                                                 </div>
-                                                <div className="productPrice">{product.price}</div>
+                                                <Price value={product.price}/>
                                             </div>
                                         </Link>
                                     ))

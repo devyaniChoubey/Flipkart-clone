@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './index.css';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../actions';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const MenuHeader = (props) => {
 
     useEffect(() => {
         dispatch(getAllCategory())
-    },[])
+    }, [])
 
 
 
@@ -24,12 +24,12 @@ const MenuHeader = (props) => {
         let categorie = [];
         for (let category of categories) {
             categorie.push(
-                <li key={category.name} style={{width : "8.5rem"}}>
+                <li key={category.name} style={{ width: "8.5rem" }}>
                     {
-                        category.parentId ? <Link to={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</Link> : <span>{category.name}</span>
+                        category.parentId ? <a href={`/${category.slug}?cid=${category._id}&type=${category.type}`}>{category.name}</a> : <span>{category.name}</span>
                     }
                     {console.log(category.parentId)}
-                    
+
                     {category.children.length > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
                 </li>
             )
@@ -40,9 +40,9 @@ const MenuHeader = (props) => {
     }
     return (
         <div className="menuHeader">
-           <ul>
-               {category.categories.length > 0 ? renderCategories(category.categories) : null}
-           </ul>
+            <ul>
+                {category.categories.length > 0 ? renderCategories(category.categories) : null}
+            </ul>
         </div>
     )
 

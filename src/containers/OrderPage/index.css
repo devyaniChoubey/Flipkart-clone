@@ -1,13 +1,16 @@
 .orderItemContainer{
-    padding: 10px;
+    padding: 16px;
     box-sizing: border-box;
     display: flex;
+    text-decoration: none;
+    color: black;
 }
 .orderImgContainer{
     width: 80px;
     height: 80px;
     overflow: hidden;
     text-align: center;
+
 }
 .orderImg{
     max-width: 80px;
@@ -21,7 +24,7 @@
     width: 300px;
     box-sizing: border-box;
     padding: 0 20px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .orderPrice{
     box-sizing: border-box;
@@ -29,4 +32,6 @@
     display: flex;
     align-items: flex-start;
     font-size: 14px;
+    margin-left:10px;
+    margin-right: 180px;
   } 

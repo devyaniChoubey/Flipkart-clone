@@ -102,14 +102,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Name"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="10-digit mobile number"
+              placeholder="10-digit mobile number"
               value={mobileNumber}
               onChange={(e) => setMobileNumber(e.target.value)}
             />
@@ -118,14 +118,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Pincode"
+              placeholder="Pincode"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="Locality"
+              placeholder="Locality"
               value={locality}
               onChange={(e) => setLocality(e.target.value)}
             />
@@ -134,7 +134,7 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={{width: "100%"}}>
             <MaterialInput
-              label="Address"
+              placeholder="Address"
               value={address}
               
               onChange={(e) => setAddress(e.target.value)}
@@ -145,14 +145,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="City/District/Town"
+              placeholder="City/District/Town"
               value={cityDistrictTown}
               onChange={(e) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="State"
+              placeholder="State"
               value={state}
               onChange={(e) => setState(e.target.value)}
             />
@@ -161,14 +161,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Landmark (Optional)"
+              placeholder="Landmark (Optional)"
               value={landmark}
               onChange={(e) => setLandmark(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="Alternate Phone (Optional)"
+              placeholder="Alternate Phone (Optional)"
               value={alternatePhone}
               onChange={(e) => setAlternatePhone(e.target.value)}
             />

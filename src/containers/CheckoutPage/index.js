@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { addOrder, getAddress, getCartItems } from "../../actions";
 import Layout from "../../components/Layout";
 import {
@@ -109,6 +110,7 @@ const CheckoutPage = (props) => {
     const [confirmOrder, setConfirmOrder] = useState(false);
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onAddressSubmit = (addr) => {
         setSelectedAddress(addr);
@@ -145,28 +147,29 @@ const CheckoutPage = (props) => {
         setPaymentOption(true);
     };
 
-    
 
-      const onConfirmOrder = () => {
-        const totalAmount=Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+
+    const onConfirmOrder = () => {
+        const totalAmount = Object.keys(cart.cartItems).reduce((totalPrice, key) => {
             const { price, qty } = cart.cartItems[key];
             return totalPrice + price * qty;
         }, 0)
         const items = Object.keys(cart.cartItems).map(key => ({
-            productId: key, 
+            productId: key,
             payablePrice: cart.cartItems[key].price,
             purchasedQty: cart.cartItems[key].qty
         }))
         const payload = {
-            addressId : selectedAddress._id,
+            addressId: selectedAddress._id,
             totalAmount,
             items,
-            paymentStatus:"pending"
+            paymentStatus: "pending",
+            paymentType:"cod"
         }
         console.log(payload)
         dispatch(addOrder(payload))
         setConfirmOrder(true)
-      };
+    };
 
     useEffect(() => {
         auth.authenticate && dispatch(getAddress());
@@ -180,17 +183,16 @@ const CheckoutPage = (props) => {
             edit: false,
         }));
         setAddress(address);
-        //user.address.length === 0 && setNewAddress(true);
     }, [user.address]);
 
-    //   useEffect(() => {
-    //     if (confirmOrder && user.placedOrderId) {
-    //       props.history.push(`/order_details/${user.placedOrderId}`);
-    //     }
-    //   }, [user.placedOrderId]);
+    useEffect(() => {
+        if (confirmOrder && user.placedOrderId) {
+            navigate(`/order_details/${user.placedOrderId}`)
+        }
+    }, [user.placedOrderId])
 
-    if(confirmOrder){
-        return(
+    if (confirmOrder) {
+        return (
             <Layout>
                 <Card>
                     <div>Thank you</div>
@@ -199,7 +201,7 @@ const CheckoutPage = (props) => {
         )
     }
 
-   
+
     return (
         <Layout>
             <div className="cartContainer" style={{ alignItems: "flex-start" }}>
@@ -282,26 +284,26 @@ const CheckoutPage = (props) => {
                         body={
                             paymentOption && (
                                 <div>
-                                  <div
-                                    className="flexRow"
-                                    style={{
-                                      alignItems: "center",
-                                      padding: "20px",
-                                    }}
-                                  >
-                                    <input type="radio" name="paymentOption" value="cod" />
-                                    <div>Cash on delivery</div>
-                                  </div>
-                                  <MaterialButton
-                                    title="CONFIRM ORDER"
-                                    onClick={onConfirmOrder}
-                                    style={{
-                                      width: "200px",
-                                      margin: "0 0 20px 20px",
-                                    }}
-                                  />
+                                    <div
+                                        className="flexRow"
+                                        style={{
+                                            alignItems: "center",
+                                            padding: "20px",
+                                        }}
+                                    >
+                                        <input type="radio" name="paymentOption" value="cod" />
+                                        <div>Cash on delivery</div>
+                                    </div>
+                                    <MaterialButton
+                                        title="CONFIRM ORDER"
+                                        onClick={onConfirmOrder}
+                                        style={{
+                                            width: "200px",
+                                            margin: "0 0 20px 20px",
+                                        }}
+                                    />
                                 </div>
-                              )
+                            )
                         }
                     />
                 </div>

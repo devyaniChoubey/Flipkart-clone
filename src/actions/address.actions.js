@@ -70,6 +70,12 @@ export const addOrder = (payload) => {
                 dispatch({
                     type: cartConstants.RESET_CART
                 })
+                console.log(res);
+                const { order } = res.data;
+                dispatch({
+                    type: addressConstants.ADD_USER_ORDER_SUCCESS,
+                    payload: { order }
+                });
 
             } else {
                 const { error } = res.data;
@@ -92,10 +98,10 @@ export const getOrders = () => {
             dispatch({ type: addressConstants.GET_USER_ORDER_REQUEST })
             if (res.status === 200) {
                 console.log(res);
-                const {orders} = res.data;
+                const { orders } = res.data;
                 dispatch({
-                    type:addressConstants.GET_USER_ORDER_SUCCESS,
-                    payload:{orders}
+                    type: addressConstants.GET_USER_ORDER_SUCCESS,
+                    payload: { orders }
                 })
 
             } else {
@@ -105,6 +111,35 @@ export const getOrders = () => {
                     payload: { error }
                 })
             }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+// single order with complete info and delivery location
+export const getOrder = (payload) => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.post('/getOrder', payload);
+            dispatch({ type: addressConstants.GET_USER_ORDER_DETAILS_REQUEST })
+            if (res.status === 200) {
+                console.log(res.data);
+                dispatch({
+                    type: addressConstants.GET_USER_ORDER_DETAILS_SUCCESS,
+                    payload: {
+                        order: res.data.order
+                    }
+                })
+
+            } else {
+                const { error } = res.data;
+                dispatch({
+                    type: addressConstants.GET_USER_ORDER_DETAILS_FAILURE,
+                    payload: { error },
+                });
+            }
+
         } catch (error) {
             console.log(error);
         }

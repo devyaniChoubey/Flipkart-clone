@@ -3,10 +3,13 @@ import { addressConstants } from "../actions/constants";
 
 const initState = {
     address: [],
-    orders:[],
+    orders: [],
     error: null,
     loading: false,
-    orderFetching:false
+    orderFetching: false,
+    orderDetails: {},
+    placedOrderId: null
+
 }
 
 export default (state = initState, action) => {
@@ -54,22 +57,38 @@ export default (state = initState, action) => {
         case addressConstants.GET_USER_ORDER_REQUEST:
             state = {
                 ...state,
-                orderFetching : true
+                orderFetching: true
             }
             break;
         case addressConstants.GET_USER_ORDER_SUCCESS:
-            state={
+            state = {
                 ...state,
                 orders: action.payload.orders,
-                orderFetching:false
+                orderFetching: false
             }
             break;
         case addressConstants.GET_USER_ORDER_FAILURE:
-            state={
+            state = {
                 ...state,
                 error: action.payload.error,
-                orderFetching:false
+                orderFetching: false
             }
+            break;
+        case addressConstants.GET_USER_ORDER_DETAILS_REQUEST:
+            break;
+        case addressConstants.GET_USER_ORDER_DETAILS_SUCCESS:
+            state = {
+                ...state,
+                orderDetails: action.payload.order,
+            };
+            break;
+        case addressConstants.GET_USER_ORDER_DETAILS_FAILURE:
+            break;
+        case addressConstants.ADD_USER_ORDER_SUCCESS:
+            state = {
+                ...state,
+                placedOrderId: action.payload.order._id,
+            };
             break;
 
 

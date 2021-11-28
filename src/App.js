@@ -9,6 +9,7 @@ import { getAllProducts, isUserLoggedIn, updateCart } from './actions';
 import ProductDetailsPage from './containers/ProductdetailsPage';
 import CheckOutPage from './containers/CheckoutPage/index';
 import OrderPage from './containers/OrderPage';
+import OrderDetailsPage from './containers/OrderDetailsPage';
 
 function App() {
   const dispatch =useDispatch();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/:slug" element={<ProductListPage/>} />
         <Route path="/cart" element={<CartPage/>}/>
         <Route path="/account/orders" element={<OrderPage/>} />
+        <Route path="/order_details/:orderId" element={<OrderDetailsPage/>} />
         <Route path="/checkout" element={<CheckOutPage/>}/>
       </Routes>
     </div>

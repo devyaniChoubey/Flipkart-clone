@@ -11,7 +11,7 @@ const getCartItems = () => {
             console.log("GETCARTITEMS", res);
             if (res.status === 200) {
                 const { cartItems } = res.data;
-                console.log({getCartItems : cartItems})
+                console.log({ getCartItems: cartItems })
                 if (cartItems) {
                     dispatch({
                         type: cartConstants.ADD_TO_CART_SUCCESS,
@@ -48,26 +48,26 @@ export const addToCart = (product, qty1 = 1) => {
             qty
         }
 
-        if(auth.authenticate){
-            dispatch({type: cartConstants.ADD_TO_CART_REQUEST})
+        if (auth.authenticate) {
+            dispatch({ type: cartConstants.ADD_TO_CART_REQUEST })
 
             const payload = {
-                cartItems :[{
+                cartItems: [{
                     product: product._id,
-                    quantity : qty
+                    quantity: qty
                 }]
             }
             console.log(payload)
             const res = await axios.post('/user/cart/addtocart', payload);
             console.log(res);
-            if(res.status === 200){
+            if (res.status === 200) {
                 dispatch(getCartItems())
             }
-        }else{
+        } else {
             localStorage.setItem('cart', JSON.stringify(cartItems))
         }
 
-         console.log("addToCart::", cartItems)
+        console.log("addToCart::", cartItems)
 
         dispatch({
             type: cartConstants.ADD_TO_CART_SUCCESS,
@@ -81,33 +81,33 @@ export const addToCart = (product, qty1 = 1) => {
 
 export const updateCart = () => {
     return async dispatch => {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         let cartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : null;
         if (auth.authenticate) {
             localStorage.removeItem('cart');
-            if(cartItems){
+            if (cartItems) {
                 const payload = {
-                    cartItems : Object.keys(cartItems).map((key,index) => {
-                        return{
-                            quantity : cartItems[key].qty,
+                    cartItems: Object.keys(cartItems).map((key, index) => {
+                        return {
+                            quantity: cartItems[key].qty,
                             product: cartItems[key]._id
                         }
                     })
                 }
-                if(Object.keys(cartItems).length >0){
-                    const res = await axios.post(`/user/cart/addtocart`,payload);
-                    if(res.status === 201){
+                if (Object.keys(cartItems).length > 0) {
+                    const res = await axios.post(`/user/cart/addtocart`, payload);
+                    if (res.status === 201) {
                         dispatch(getCartItems());
                     }
                 }
 
             }
-            
-        }else{
-            if(cartItems){
+
+        } else {
+            if (cartItems) {
                 dispatch({
-                    type:cartConstants.ADD_TO_CART_SUCCESS,
-                    payload:{
+                    type: cartConstants.ADD_TO_CART_SUCCESS,
+                    payload: {
                         cartItems
                     }
                 })
@@ -116,4 +116,26 @@ export const updateCart = () => {
     }
 }
 
-export {getCartItems}
+
+export const removeCartItems = (payload) => {
+    return async dispatch => {
+        try {
+            dispatch({type:cartConstants.REMOVE_CART_ITEM_REQUEST})
+            const res = await axios.post('/user/cart/removeItem', {payload})
+            if(res.status === 202){
+                dispatch({type:cartConstants.REMOVE_CART_ITEM_SUCCESS})
+                dispatch(getCartItems());
+            }else{
+                const {error} = res.data;
+                dispatch({
+                    type:cartConstants.REMOVE_CART_ITEM_FAILURE,
+                    payload:{error}
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export { getCartItems }

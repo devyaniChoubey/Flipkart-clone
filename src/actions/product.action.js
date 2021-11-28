@@ -13,7 +13,7 @@ export const getProductsByslug = (slug) => {
         } else {
 
         }
-        console.log(res);
+        console.log("products Slug",res);
     }
 }
 

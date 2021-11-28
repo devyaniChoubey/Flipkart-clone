@@ -14,18 +14,49 @@ import {
   MaterialButton,
   DropdownMenu
 } from '../MaterialUI';
-import { login,signout } from '../../actions/auth.action';
+import { login,signout,signup as _signup } from '../../actions/auth.action';
 import { Link } from 'react-router-dom';
+import { getCartItems } from '../../actions/cart.actions';
+import Cart from '../UI/Cart';
 const Header = (props) => {
 
   const [loginModal, setLoginModal] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signup, setSignup] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
+
+
   const auth = useSelector(state => state.auth);
-  const userlogin = () => {
-    dispatch(login({ email, password }))
+  const cart = useSelector(state =>  state.cart);
+
+  const userSignup = () => {
+    const user = {
+      firstName,
+      lastName,
+      email,
+      password
+    }
+
+    if(firstName === "" || lastName === "" || email === "" || password === "") return;
+    dispatch(_signup(user));
   }
+
+  const userlogin = () => {
+    if(signup){
+        userSignup()
+    }else{
+      dispatch(login({ email, password }))
+    }
+    
+  }
+
+  useEffect(() => {
+       dispatch(getCartItems())
+  },[])
 
   useEffect(() => {
     if(auth.authenticate){
@@ -66,7 +97,11 @@ const Header = (props) => {
     return (
       <DropdownMenu
         menu={
-          <a className="loginButton" onClick={() => setLoginModal(true)}>
+          <a className="loginButton" onClick={() => {
+            setSignup(false)
+            setLoginModal(true)
+            
+          }}>
             {/* <IoIosArrowDown /> */}
             Login
           </a>
@@ -89,7 +124,11 @@ const Header = (props) => {
         firstMenu={
           <div className="firstmenu">
             <span>New Customer?</span>
-            <a style={{ color: '#2874f0' }}>Sign Up</a>
+            <a style={{ color: '#2874f0' }} onClick={() => {
+              setLoginModal(true)
+              setSignup(true)
+              
+            }}>Sign Up</a>
           </div>
         }
       />
@@ -110,6 +149,26 @@ const Header = (props) => {
             </div>
             <div className="rightspace">
               <div className="loginInputContainer">
+
+                {signup &&  <MaterialInput
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                 
+                  onChange={(e) => setFirstName(e.target.value)}
+
+                />}
+                {
+                  signup && <MaterialInput
+                  type="text"
+                  label="Last Name"
+                  placeholder="Last Name"
+                  value={lastName}
+                 
+                  onChange={(e) => setLastName(e.target.value)}
+
+                />
+                }
 
               <MaterialInput
                   type="text"
@@ -132,7 +191,7 @@ const Header = (props) => {
                 // rightElement={<a href="#">Forgot?</a>}
                 />
                 <MaterialButton
-                  title="Login"
+                  title={signup ? "Signup" : "Login"}
                   bgColor="#cd6deb"
                   textColor="#ffffff"
                   style={{
@@ -208,7 +267,7 @@ const Header = (props) => {
           />
           <div>
             <Link to={`/cart`} style={{textDecoration :"none"}} className="cart">
-              <IoIosCart />
+            <Cart count={Object.keys(cart.cartItems).length} />
               <span style={{ margin: '0 10px' }}>Cart</span>
             </Link>
           </div>

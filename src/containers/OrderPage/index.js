@@ -8,6 +8,7 @@ import { BiRupee } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
 import './index.css';
 import { Breed } from "../../components/MaterialUI";
+import { Link } from "react-router-dom";
 
 const OrderPage = (props) => {
 
@@ -30,7 +31,10 @@ const OrderPage = (props) => {
                 {user.orders.map((order) => {
                     return order.items.map((item) => (
                         <Card style={{ margin: "5px 0" }}>
-                            <div className="orderItemContainer">
+                            <Link
+                                to={`/order_details/${order._id}`}
+                                className="orderItemContainer"
+                            >
                                 <div className="orderImgContainer">
                                     <img
                                         className="orderImg"
@@ -47,7 +51,7 @@ const OrderPage = (props) => {
                                     </div>
                                     <div>{order.paymentStatus}</div>
                                 </div>
-                            </div>
+                            </Link>
                         </Card>
                     ));
                 })}
